@@ -28,32 +28,20 @@ public class MyList<T> {
 	//添加元素
 	public boolean add(T element){
 		checkSize(size+1);
-		for(int i=0;i<elements.length;i++){
-			if(elements[i]==null){
-				elements[i]=element;
-				size++;
-				break;
-			}
-		}
+		elements[size]=element;
+		size++;
 		return true;
 	}
 	
 	//在指定位置添加元素
 	public boolean add(int index,T element){
-		if(index>elements.length||index<0){
+		if(index>size||index<0){
 			return false;
 		}
-		if(index>size){
-			checkSize(size+1);
-			elements[index]=element;
-			size++;
-			return true;
-		}else{
-			System.arraycopy(elements, index, elements, index+1, elements.length-index);
-			elements[index]=element;
-			size++;
-			return true;
-		}
+		System.arraycopy(elements, index, elements, index, size-index);
+		elements[index]=element;
+		size++;
+		return true;
 	}
 	
 	private void checkSize(int oldCapacity){
@@ -65,14 +53,13 @@ public class MyList<T> {
 	
 //	移除元素
 	public boolean remove(int index){
-		if(index<0||index>elements.length){
+		if(index<0||index>size){
 			return false;
 		}else{
 			System.arraycopy(elements, index+1, elements, index, elements.length-index-1 );
 			size--;
 			return true;
 		}
-		
 	}
 
 //	移除指定元素
@@ -80,7 +67,7 @@ public class MyList<T> {
 		if(element==null){
 			return false;
 		}else{
-			for(int i=0;i<elements.length;i++){
+			for(int i=0;i<size;i++){
 				if(element==elements[i]){
 					System.arraycopy(elements, i+1, elements, i, elements.length-i-1 );
 					size--;
@@ -93,7 +80,7 @@ public class MyList<T> {
 	
 //	获取指定元素
 	public T get(int index){
-		if(index<0||index>elements.length){
+		if(index<0||index>size){
 			return null;
 		}else{
 			return (T) elements[index];

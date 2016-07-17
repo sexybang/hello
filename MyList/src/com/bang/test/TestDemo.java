@@ -1,5 +1,6 @@
 package com.bang.test;
 
+
 import org.junit.Test;
 
 import com.bang.main.MyList;
@@ -12,7 +13,7 @@ public class TestDemo {
 		myList.add("aaaaa");
 		myList.add("bbbbb");
 		myList.add(4, "cccc");
-		for(int i=0;i<9;i++){
+		for(int i=0;i<myList.getSize();i++){
 			System.out.println(myList.get(i));
 		}
 	}
@@ -37,5 +38,8 @@ public class TestDemo {
 		myList.add("cccc");
 		System.out.println(myList.get(2));
 	}
+	
+	
+	
 	
 }
